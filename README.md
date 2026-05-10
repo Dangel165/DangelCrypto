@@ -129,20 +129,14 @@ echo enc.sharedSecret.raw == ss.raw
 - signature component encoding
 - public KCDSA / EC-KCDSA APIs are still gated pending profile-specific vectors
 
-## 구현 전략
-
-구현 순서는 다음과 같습니다.
-
-1. Kyber 수학 기반: 모듈러 연산, 다항식 연산, 압축, NTT.
-2. Kyber CPA-PKE: 키 생성, 암호화, 복호화.
-3. Kyber KEM: encapsulation, decapsulation, KAT 테스트 벡터.
-4. Curve25519 / Ed25519: 필드 연산과 스칼라 곱셈.
-5. ECDSA / EdDSA: 결정론적 nonce 규칙과 테스트 벡터.
-6. KCDSA / EC-KCDSA: 곡선 백엔드가 안정된 뒤 구현.
-
-다음 주요 작업은 Kyber CPA-PKE를 NTT-domain 고속 경로로 맞추고,
-공식 KAT 벡터와 비교하는 것입니다.
-
 Kyber NTT와 polynomial encoding 구조는 CRYSTALS-Kyber 공식 reference
 구현을 기준으로 작성했습니다. SHAKE는 NIST FIPS 202의 Keccak/SHAKE
 구조를 기준으로 작성했습니다.
+
+## 주의
+
+DangelCrypto는 학습, 연구, 실험을 위한 순수 Nim 암호 라이브러리입니다.
+
+이 프로젝트는 아직 보안 감사를 받지 않았고, side-channel 안전성 및 constant-time 동작이 전체적으로 검증되지 않았습니다. Kyber, KCDSA, EC-KCDSA 일부 기능은 아직 표준 벡터와 완전한 호환 검증이 끝나지 않았습니다.
+
+따라서 이 라이브러리는 실제 서비스, 지갑, 인증 시스템, 개인정보 보호, 금융, 상용 제품에 사용하면 안 됩니다.

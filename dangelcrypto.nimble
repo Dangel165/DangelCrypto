@@ -1,7 +1,7 @@
 ﻿version       = "0.1.0"
 author        = "Dangel"
 description   = "Nim cryptography facade for Kyber, ECC signatures, KCDSA, EC-KCDSA, and curve primitives."
-license       = "MIT"
+license       = "Proprietary"
 srcDir        = "src"
 
 requires "nim >= 2.0.0"
